@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+<head>
+	<!--link for style sheet-->
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<meta charset="utf-8">
+	<title>The Periodic Table</title>
+	<script>
+		/*functions to display content on button click*/
+  		function displayRadius() {
+			document.getElementById("contentHead").innerHTML = "Atomic Radius";
+        	document.getElementById("content").innerHTML = "Atomic radius increases up and to the right. Why? Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum";
+         document.getElementById('ptable').src="images/ptableRadius.jpg";
+		}
+		function displayIons() {
+			document.getElementById("contentHead").innerHTML = "First Ionization Energy";
+        	document.getElementById("content").innerHTML = "Ionization Energy increases up and to the right. Why? Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum";
+         document.getElementById('ptable').src="images/ptableElectro.jpg";
+		}
+		function displayElectro() {
+			document.getElementById("contentHead").innerHTML = "Electronegativity";
+        	document.getElementById("content").innerHTML = "Electgronegativity increases up and to the right. Why? Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum";
+         document.getElementById('ptable').src="images/ptableElectro.jpg";
+		}
+		function displayMelt() {
+			document.getElementById("contentHead").innerHTML = "Melting and Boiling Points";
+        	document.getElementById("content").innerHTML = "Boiling and melting points increases up and to the right. Why? Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum";
+         document.getElementById('ptable').src="images/ptableMB.jpg";
+		}
+		
+		/*game variables*/
+		var element_symbol = ["Br", "Cr", "Sr", "Ga", "Si"];
+		var element;
+		var round = ["1", "2", "3", "4", "5"];
+		var mistakes = 0;
+       	
+		/*game images*/
+		var imgArray = new Array();
+
+		imgArray[0] = new Image();
+		imgArray[0].src = 'images/element1.png';
+
+		imgArray[1] = new Image();
+		imgArray[1].src = 'images/element2.png';
+
+		imgArray[2] = new Image();
+		imgArray[2].src = 'images/element3.png';
+
+		imgArray[3] = new Image();
+		imgArray[3].src = 'images/element4.png';
+
+		imgArray[4] = new Image();
+		imgArray[4].src = 'images/element5.png';
+
+		/*game play, if answer is correct next round begins, if it incorrect they keep guessing until correct*/
+		function playGame (){
+     
+			/*inpput varibales and loop check*/
+    		var newElement = prompt("Use the clues to guess the element -Make sure you enter the symbol of the element correctly");
+    		var answer = false;
+		
+			/*loop to go to next round if correct and to guess again if incorrect*/
+    		for (i = 0; i < element_symbol.length; i = i + 1){
+				if (newElement == element_symbol[i]){
+            		answer = true;
+					i = i +1;
+            		alert("Grreat job! " + newElement+ " is correct. Begin Round " + round[i] + " by clicking the play game button");
+					document.getElementById("whoami").src = imgArray[i].src;
+            	}
+        	}
+        
+        	if ( answer == false){
+            	alert("Bummer! " + newElement + " is incorrect. Try again. Click the play game button");
+				mistakes = mistakes + 1;
+				document.getElementById("results").innerHTML = "You have made " + mistakes + " mistakes";
+             }
+    	}
+   
+	</script>
+</head>
+
+<body>
+		
+	<!--this is the top banner...logo and navigation-->
+	<div class="topnav">
+		<img src = "images/logo1.jpg" width="5%" align ="left">
+		<h1> The Periodic Table</h1>
+	</div>
+	
+	<!--buttons to get lessons on trends-->
+	<div class= "container-left">
+	
+		<h2 style="color:white;">Select a periodic trend below to learn about that trend.</h2>
+  			
+   		<input type="button" value = "atomic radius" onclick=  "displayRadius()" name="writeRadius"/>
+		<input type="button" value = "ionization energy" onclick= "displayIons()" name="writeIons"/>
+		<input type="button" value = "electronegativity" onclick= "displayElectro() " name="writeElectro"/>
+		<input type="button" value = "boiling/melting points" onclick= "displayMelt() " name="writeMelt"/>
+
+   		<!--display lesson info-->
+    	<h2 id="lessons" style="color:white;"></h2><br>
+
+    	<!--display lesson image-->
+   		<p id="images"></p>
+		<img src = "images/ptable.JPG" id ="ptable" width="100%"><br><br>
+  	
+ 	</div>
+	
+	<!--display lesson content on button click-->
+	<div class= "container-topright">
+		<h3 id ="contentHead"> </h3>
+		<p id="content"> </p>
+	</div>
+	
+	<div class= "container-bottomright">
+		<h1> Lets'play a game</h1>
+		<p>Use the clues to guess the element -Make sure you enter the symbol of the element correctly</p>
+		<img align="right" src = "images/element1.png" id = "whoami" width ="50%" > 
+		<button onclick="playGame()">Play Game</button><br>
+		<p id ="results">mistakes</p>
+	</div>
+	
+	<!--this is the footer-->
+	<div class="footer">
+		<a href="https://pattyparkerfl.github.io/week3/">Chemistry Corner</a>
+  	</div>
+</body>
+</html>
